@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f1e7">
+<title>Feliz cumpleaños, piojo 🌻</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --cream: #fbf6ef;
+  --paper: #fffdf9;
+  --ink: #4c493f;
+  --muted: #81796d;
+  --gold: #d4a83f;
+  --gold-dark: #a97b21;
+  --sage: #a8b59a;
+  --rose: #e8c7bc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.screen {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    #fffdf8 0%,
+    #f7eddd 75%
+  );
+  flex-direction: column;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#intro.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sunflower {
+  font-size: clamp(3rem, 8vw, 5.4rem);
+  display: inline-block;
+  animation: sway 2s ease-in-out infinite;
+  filter: drop-shadow(0 7px 8px #b48a3b20);
+}
+
+.sunflower:nth-child(2) {
+  animation-delay: -1.2s;
+  font-size: clamp(2.3rem, 6vw, 4rem);
+}
+
+.flowers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+}
+
+#intro h1 {
+  font-size: clamp(2.7rem, 8vw, 5.5rem);
+  line-height: 1.08;
+  margin: 0;
+  color: #5d594c;
+}
+
+#intro h1 span {
+  color: var(--gold-dark);
+  font-style: italic;
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-7deg) translateY(0);
+  }
+  50% {
+    transform: rotate(7deg) translateY(-7px);
+  }
+}
+
+main {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+main.visible {
+  opacity: 1;
+}
+
+.section {
+  padding: 85px 20px;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.intro-quote {
+  text-align: center;
+  padding-top: 76px;
+  padding-bottom: 48px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .72rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.intro-quote h2 {
+  font-size: clamp(2rem, 5.7vw, 3.7rem);
+  line-height: 1.2;
+  max-width: 780px;
+  margin: 20px auto 12px;
+}
+
+.intro-quote p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.photo-card {
+  margin: 0;
+  padding: 10px;
+  background: var(--paper);
+  border-radius: 16px;
+  box-shadow: 0 12px 35px #6c573014;
+  transform: translateY(0);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px) rotate(-.3deg);
+  box-shadow: 0 18px 40px #6c573022;
+}
+
+.photo-card:nth-child(2) {
+  transform: translateY(22px) rotate(1deg);
+}
+
+.photo-card:nth-child(2):hover {
+  transform: translateY(16px) rotate(0);
+}
+
+.photo-card img {
+  width: 100%;
+  height: clamp(260px, 43vw, 510px);
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.envelope-section {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 80px 20px 110px;
+}
+
+.envelope-section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 12px 0;
+}
+
+.envelope-section p {
+  color: var(--muted);
+  margin: 0 0 30px;
+}
+
+.envelope-button {
+  position: relative;
+  width: 210px;
+  height: 145px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform .25s ease;
+  filter: drop-shadow(0 12px 12px #806b451e);
+}
+
+.envelope-button:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+.env-body {
+  position: absolute;
+  inset: 18px 0 0;
+  background: #e9c9a6;
+  border-radius: 5px 5px 10px 10px;
+  overflow: hidden;
+}
+
+.env-body:before,
+.env-body:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.env-body:before {
+  background: #f1d8b9;
+  clip-path: polygon(
+    0 0, 50% 58%, 100% 0, 100% 100%, 0 100%
+  );
+}
+
+.env-body:after {
+  background: #dfb98d;
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+}
+
+.env-flap {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  height: 74px;
+  background: #f4dfc3;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform .55s ease;
+  z-index: 2;
+}
+
+.seal {
+  position: absolute;
+  z-index: 3;
+  top: 65px;
+  left: calc(50% - 17px);
+  width: 34px;
+  height: 34px;
+  background: #bd895d;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff8ed;
+  font-size: 17px;
+  transition: opacity .25s;
+}
+
+.envelope-button.opened .env-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope-button.opened .seal {
+  opacity: 0;
+}
+
+.hint {
+  font-size: .85rem !important;
+  margin-top: 20px !important;
+}
+
+.letter-wrap {
+  display: none;
+  padding: 0 18px 100px;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.letter-wrap.open {
+  display: block;
+  animation: letterIn .9s ease both;
+}
+
+@keyframes letterIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.letter {
+  position: relative;
+  background: var(--paper);
+  padding: clamp(28px, 6vw, 66px);
+  border-radius: 5px;
+  box-shadow: 0 20px 65px #6c573018;
+  border: 1px solid #eee2d0;
+  text-align: left;
+}
+
+.letter:before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #eadbc4;
+  pointer-events: none;
+}
+
+.letter h2 {
+  font-size: 2rem;
+  color: #9a7135;
+  margin: 0 0 28px;
+}
+
+.letter p {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.9;
+  margin: 0 0 18px;
+  white-space: pre-line;
+}
+
+.letter .signoff {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  color: #9a7135;
+  font-size: 1.18rem;
+  margin-top: 30px;
+}
+
+.footer {
+  text-align: center;
+  padding: 0 20px 38px;
+  color: #a49a8c;
+  font-size: .8rem;
+}
+
+.heart {
+  color: #c78c79;
+}
+
+@media (max-width: 650px) {
+  .section {
+    padding: 58px 18px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 470px;
+    margin: 30px auto;
+  }
+
+  .photo-card:nth-child(2) {
+    transform: none;
+  }
+
+  .photo-card img {
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    background: #f7f0e7;
+  }
+
+  .photo-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .envelope-section {
+    min-height: 70vh;
+  }
+
+  .letter p {
+    font-size: .96rem;
+    line-height: 1.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Pantalla inicial -->
+<section id="intro" class="screen" aria-label="Bienvenida">
+  <div class="flowers" aria-hidden="true">
+    <span class="sunflower">🌻</span>
+    <span class="sunflower">🌻</span>
+    <span class="sunflower">🌻</span>
+  </div>
+
+  <h1>
+    Feliz cumpleaños<br>
+    <span>piojo</span>
+  </h1>
+</section>
+
+<main id="main">
+
+  <!-- Mensaje y fotografías -->
+  <section class="section intro-quote">
+    <span class="kicker">Un poquito de nosotros</span>
+
+    <h2>Gracias por tantos momentos compartidos</h2>
+
+    <p>Y por todos los que todavía nos quedan por vivir. 🌻</p>
+  </section>
+
+  <section class="section" style="padding-top:10px">
+    <div class="gallery">
+
+      <figure class="photo-card">
+        <img
+          src="img/image0.jpeg"
+        >
+      </figure>
+
+      <figure class="photo-card">
+        <img
+          src="img/image1.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image2.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image3.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image4.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image5.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image7.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image8.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image9.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image10.jpeg"
+        >
+      </figure>
+      <figure class="photo-card">
+        <img
+          src="img/image11.jpeg"
+        >
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- Sobre interactivo -->
+  <section class="envelope-section" id="envelopeArea">
+
+    <span class="kicker">Hay algo más para vos</span>
+
+    <h2>Una cartita para vos pollito</h2>
+
+    <p>Hecha con mucho cariño. Tocá el sobre para abrirla.</p>
+
+    <button
+      class="envelope-button"
+      id="envelope"
+      aria-label="Abrir la carta"
+      aria-expanded="false"
+    >
+      <span class="env-body"></span>
+      <span class="env-flap"></span>
+      <span class="seal">♥</span>
+    </button>
+
+    <p class="hint">Con amor, para vos ✨</p>
+
+  </section>
+
+  <!-- Carta -->
+  <section
+    class="letter-wrap"
+    id="letterWrap"
+    aria-live="polite"
+  >
+    <article class="letter">
+
+      <h2>Mi piojo 🌻</h2>
+
+      <p>Te deseo un hermoso cumpleaños, que estos 23 añitos vengan llenos de éxitos y mucha pero mucha felicidad.</p>
+
+      <p>Nunca voy a cansarme de agradecerte, de hecho ni siquiera podría hacer una lista de todas las cosas para darte las gracias porque sería interminable, pero de verdad gracias por estar hasta en mis peores momentos escuchándome, aconsejando y siendo un pilar en mi vida para hacerla más fácil y bonita.</p>
+
+      <p>Sos una persona que se merece todo, no conozco a nadie con tu forma de ser, sos diferente en todos los aspectos, tan buena, graciosa, inteligente, honesta, humilde, empática y millones de cosas más que tampoco entrarían acá y por eso te admiro.</p>
+
+      <p>Me alegro mucho de verte bien, ojalá que nunca se te apague ese brillo que tenés. Nunca dudes de lo que sos capaz ni del alma que tenés y si algún día lo hacés, acá voy a estar yo para hacerte acordar como vos siempre estuviste para mí, realmente le agradezco al universo por ponerte en mi vida, no te das una idea de cuánto significás para mí y el cariño que te tengo.</p>
+
+      <p>Este último año que nos acercamos empecé a conocerte mucho más y me di cuenta de la clase de persona que sos, de que puedo confiar plenamente en vos cuando yo no puedo confiar en nadie y me di cuenta por la paz que me transmitís cuando estoy con vos o cuando hablamos. Me enseñaste a seguir adelante, a que cuando las cosas parecen no tener solución y te están ahogando siempre va a aparecer un ángel que te salva y ese ángel en mi vida fuiste vos...</p>
+
+      <p>De corazón te deseo no solo un día hermoso, sino una vida hermosa llena de alegría, cosas buenas y rodeada de amor.</p>
+
+      <p style="text-align:center; font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:1.15rem; color:#9a7135; margin-top:30px">
+        “Te amo mucho más de lo que mis palabras me han permitido darte a entender”
+      </p>
+
+      <p class="signoff">
+        CON MUCHO CARIÑO, JOAQUI<br>
+        TE AMO ❤️
+      </p>
+
+    </article>
+  </section>
+
+  <footer class="footer">
+    Hecho con mucho cariño <span class="heart">♥</span> para el piojo
+  </footer>
+
+</main>
+
+<script>
+const intro = document.getElementById('intro');
+const main = document.getElementById('main');
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    intro.classList.add('fade-out');
+    main.classList.add('visible');
+  }, 3600);
+});
+
+const envelope = document.getElementById('envelope');
+const letter = document.getElementById('letterWrap');
+
+envelope.addEventListener('click', () => {
+  const isOpen = envelope.classList.toggle('opened');
+
+  envelope.setAttribute('aria-expanded', String(isOpen));
+
+  if (isOpen) {
+    letter.classList.add('open');
+
+    setTimeout(() => {
+      letter.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 300);
+
+  } else {
+    letter.classList.remove('open');
+
+    document.getElementById('envelopeArea').scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+});
+</script>
+
+</body>
+</html>
